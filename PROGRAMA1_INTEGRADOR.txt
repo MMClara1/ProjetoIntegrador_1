@@ -1,0 +1,73 @@
+print("Programa para cadastrar produto, calcular o preço de vendas e classificação de lucro")
+
+try:
+    produto = str(input("\nDigite o nome do produto: ")).upper()
+    descricao = str(input("Digite a descrição do produto: ")).upper()
+    CP = float(input("Digite o custo do produto: "))
+    CF = float(input("Digite o custo fixo/Administrativo do produto: "))
+    CA = float(input("Digite o custo de aquisição: "))
+    CV = float(input("Digite Comissão de Vendas do produto: "))
+    IV = float(input("Digite o Imposto do produto: "))
+    ML = float(input("Digite a Margem de lucro: "))
+    
+   
+    PV = CP / (1 - ((CF/100) + (CV/100) + (IV/100) + (ML/100)))
+    RB = PV - CA
+    OC = CF + CV + IV
+    ML_final = RB - OC
+   
+    
+    CP_p = CP%100
+    PV_p = PV%100
+    CA_p = CA%100
+    RB_p = RB%100
+    CF_p = CF%100
+    CV_p = CV%100
+    IV_p = IV%100
+    OC_p = OC%100
+    ML_p = ML_final%100
+    
+    if ML_final > 20:
+        print("\nO lucro do produto é Alto")
+    elif ML_final > 10 or ML_final == 20:
+        print("\nO lucro do produto é Médio")
+    elif ML_final > 0 or ML_final == 10:
+        print("\nO lucro do produto é Baixo")
+    elif ML_final == 0:
+        print("\nO lucro do produto é Equilibrado")
+    else:
+        print("\nO produto dá Prejuizo")
+    
+    
+    
+    a = "A - PREÇO DE VENDA"
+    b = "B - CUSTO DE AQUISIÇÃO(FORNECEDOR)"
+    c = "C - RECEITA BRUTA (A-B)"
+    d = "D - CUSTO FIXO/ADMINISTRATIVO"
+    e = "E - COMISSÃO DE VENDAS"
+    f = "F - IMPOSTOS"
+    g = "G - OUTROS CUSTOS(D+E+F)"
+    h = "H - RENTABILIDADE(C-G)"
+    i = "%"
+
+    
+    def criatab():
+        print("\nDESCRIÇÃO\t\t\t\tVALOR\t\t\t%")
+        print("%s:\t\t\tR$ %f\t\t%f%s " % (a, PV, PV_p,i))
+        print("%s:\tR$ %f\t\t%f%s" % (b, CA, CA_p,i))
+        print("%s:\t\tR$ %f\t\t%f%s " % (c, RB, RB_p,i))
+        print("%s:\t\tR$ %f\t\t%f%s " % (d, CF, CF_p,i))
+        print("%s:\t\t\tR$ %f\t\t%f%s" % (e, CV, CV_p,i))
+        print("%s:\t\t\t\tR$ %f\t\t%f%s" % (f, IV, IV_p,i))
+        print("%s:\t\tR$ %f\t\t%f%s" % (g, OC, OC_p,i))
+        print("%s:\t\t\tR$ %f\t\t%f%s" % (h, ML_final, ML_p,i))
+        
+    criatab()
+    
+except ValueError:
+    print("\nO nome deve ser texto")
+    print("A descricao deve ser em texto")
+    print("O custo deve ser apenas carateres numericos")
+    print("O custo deve ser apenas carateres numericos")
+    print("O custo deve ser apenas carateres numericos")
+    print("O custo deve ser apenas carateres numericos\n")
